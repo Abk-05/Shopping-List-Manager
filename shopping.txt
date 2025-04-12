@@ -1,0 +1,63 @@
+def add_item(file_path,item):
+    with open(file_path,"a") as file:
+        file.write(item + "\n")
+
+def remove_item(file_path,item_to_remove):
+    with open(file_path,"r") as file:
+        items = file.readlines()
+
+        found =False 
+
+    with open(file_path,"w") as file:
+        for item in items:
+            if item.strip() != item_to_remove:
+                file.write(item)
+            else:
+                found = True
+    if found:
+        print(f"{item_to_remove} removed!")
+    else:
+        print(f"{item_to_remove} not Found!")
+
+def view_item(file_path):
+    with open(file_path,"r") as file:
+        print("\nShopping List")
+        for line in file:
+            print(f"-{line.strip()}")
+
+def menu():
+    file_path ="Shopping_abk.txt"
+    while True:
+
+        
+        
+        print("\nShopping Options:")
+        print("1. Add_item")
+        print("2. Remove_item")
+        print("3. view_item")
+        print("4. Exit")
+
+        choice = input("Enter your Choice between 1 to 4: ")
+
+        if choice == "1":
+            item = input("Enter your item: ")
+            add_item(file_path,item)
+            print("Item Added Successfully!")
+
+        elif choice =="2":
+            item_to_remove = input("Enter your item to remove: ")
+            remove_item(file_path,item_to_remove)
+            
+
+        elif choice =="3":
+            view_item(file_path)
+
+        elif choice =="4":
+            print("Stopped!")
+            break
+
+        else:
+            print("PLEASE ENTER A VALID NUMBER!")
+        
+menu()    
+        
